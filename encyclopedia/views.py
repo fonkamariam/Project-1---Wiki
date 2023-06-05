@@ -19,6 +19,7 @@ def cnp(request):
         util.save_entry(title,body)
         return HttpResponseRedirect(reverse("index"))
     return render(request, "encyclopedia/cnp.html",{"names":util.list_entries})
-
+def get(request,x):
+    return render(request,f"encyclopedia/{x}.html")
 def rp(request):
     pass
