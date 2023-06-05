@@ -8,11 +8,15 @@
 
     
 <ul>
-    No Search Result found for the specfic query, Did you want 
+    {% if list %}
+    No Search Result found for the specfied query, Did you want 
     {% for x in list %}
-    <li><a href="wiki/{{x}}" target="_blank">{{ x }}</a>
+    <li><a href="WIKI/{{x}}">{{x}}</a>
      </li>
     {% endfor %}
+    {% else %}
+    {{message}}
+    {% endif %}
 
 </ul>
 

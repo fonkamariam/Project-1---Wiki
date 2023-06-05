@@ -12,8 +12,10 @@
         <div class="row">
             <div class="sidebar col-lg-2 col-md-3">
                 <h2>Wiki</h2>
-                <form>
-                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                <form action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <input id="find" name="search" placeholder="Search Encyclopedia"/>
+                    <button id="submitbutton" disabled type="submit"> Search </button>
                 </form>
                 <div>
                     <a href="{% url 'index' %}">Home</a>
@@ -34,4 +36,19 @@
         </div>
 
     </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const text= document.getElementById("find")
+                 const submitt= document.getElementById("submitbutton")
+                 text.addEventListener('keyup',(e)=>{
+                     const value= e.currentTarget.value;
+                     let result= value.trim();
+                     if ( result == "" ){
+                         submitt.disabled=true;
+                     }else{
+                         submitt.disabled=false;
+                     }
+                 });
+                });      
+    </script>
 </html>

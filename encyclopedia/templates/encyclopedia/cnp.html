@@ -23,7 +23,22 @@
         {% endif %}
       </div>
     
-    <button id="submit" type="submit"> Save </button>
+    <button id="submitbuttonsearch" disabled type="submit"> Save </button>
 </form>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const title= document.getElementById("title")
+        const submitt= document.getElementById("submitbuttonsearch")
+             title.addEventListener('keyup',(e)=>{
+                 const value= e.currentTarget.value;
+                 let result= value.trim();
+                 if ( result == "" ){
+                     submitt.disabled=true;
+                 }else{
+                     submitt.disabled=false;
+                 }
+             });
+            });      
+</script>
 
 {% endblock %}

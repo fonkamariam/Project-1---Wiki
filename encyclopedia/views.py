@@ -38,4 +38,18 @@ def edit(request,y):
         return HttpResponseRedirect(reverse("index"))
     a=util.get_entry(y)
     return render(request, "encyclopedia/editpage.html",{"fonka":a,"text":a,"title":y})
-    
+def search(request):
+    if request.method =='POST':
+        query=request.POST["search"]
+        listt=[]
+        list2=[]
+        for x in util.list_entries():
+            listt.append(x)
+        if query in listt:
+            return HttpResponseRedirect(reverse("get",kwargs={"x":query}))
+        else:
+            for y in listt:
+                if query in y:
+                    list2.append(y)
+        return render(request, "encyclopedia/search.html",{"list":list2,"message":f"No Matches Found for '{query}'"})
+        
