@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+
+<h1>Creating a New Page</h1>
+
+<form id="formm" action="{% url 'cnp' %}" method="post">
+    {% csrf_token %}
+    <input id="title" name="filename" placeholder="Title"/>
+    <div>Create Your Own New Page</div>
+    <textarea id="textarea" name="text" placeholder="Type here..." rows="50" cols="50"> </textarea>
+    <br><br>
+    <button  id="submit" type="submit" > Save </button>
+</form>
+<script>
+    formm.addEventListener('input', () => {
+        if (title.value.length > 0 && textarea.value.length > 0){
+            submit.removeAttribute('disabled');
+        }else{
+            submit.setAttribute('disabled','disabled');
+        }
+    });
+</script>
+       
+
+
+
+{% endblock %}
