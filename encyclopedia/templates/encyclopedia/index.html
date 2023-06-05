@@ -8,9 +8,14 @@
     <h1>All Pages</h1>
 
     <ul>
+        {% if entries %}
         {% for entry in entries %}
-            <li><a href="WIKI/{{entry}}"> {{entry}} </a></li>
+            <li><a href="WIKI/{{entry}}"> {{entry}} </a>(<a href="edit/{{entry}}">edit</a>)</li> 
         {% endfor %}
+        {% else %}
+        No Pages have been added <br>
+        <a href="{% url 'cnp' %}"> Click here</a> to Create a new page
+        {% endif %}
     </ul>
 
 {% endblock %}

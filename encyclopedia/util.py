@@ -73,9 +73,17 @@ def save_entry(title, content):
     default_storage.save(filename, ContentFile(content))
     # Save in Html form
     file_html=f"encyclopedia/templates/encyclopedia/{title}.html"
+    if default_storage.exists(file_html):
+        default_storage.delete(file_html)
     default_storage.save(file_html,ContentFile(content_in_html))
-
-
+def delete_entry(name):
+    md=f"entries/{name}.md"
+    if default_storage.exists(md):
+        default_storage.delete(md)
+    html=f"encyclopedia/templates/encyclopedia/{name}.html"
+    if default_storage.exists(html):
+        default_storage.delete(html)
+    
 def get_entry(title):
     """
     Retrieves an encyclopedia entry by its title. If no such

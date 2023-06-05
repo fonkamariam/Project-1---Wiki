@@ -28,3 +28,14 @@ def rp(request):
         listt.append(x)
     a=random.choice(listt)
     return HttpResponseRedirect(reverse("get",kwargs={"x":a}))
+def edit(request,y):
+    if request.method =='POST':
+        hidden=request.POST["old_title"]
+        title= request.POST["filename"]
+        body=request.POST["body"]
+        util.delete_entry(hidden)
+        util.save_entry(title,body)
+        return HttpResponseRedirect(reverse("index"))
+    a=util.get_entry(y)
+    return render(request, "encyclopedia/editpage.html",{"fonka":a,"text":a,"title":y})
+    
