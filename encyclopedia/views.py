@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from . import util
+import random
 
 
 def index(request):
@@ -22,4 +23,8 @@ def cnp(request):
 def get(request,x):
     return render(request,f"encyclopedia/{x}.html")
 def rp(request):
-    pass
+    listt=[]
+    for x in util.list_entries():
+        listt.append(x)
+    a=random.choice(listt)
+    return HttpResponseRedirect(reverse("get",kwargs={"x":a}))
