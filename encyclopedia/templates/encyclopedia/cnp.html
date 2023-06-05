@@ -10,23 +10,20 @@
 
 <form id="formm" action="{% url 'cnp' %}" method="post">
     {% csrf_token %}
-    <input id="title" name="filename" placeholder="Title"/>
-    <div>Create Your Own New Page</div>
-    <textarea id="textarea" name="text" placeholder="Type here..." rows="50" cols="50"> </textarea>
-    <br><br>
-    <button  id="submit" type="submit" > Save </button>
+    <input id="title" name="filename" placeholder="Title"/><br>
+    {% if message %}
+    <div class="text-danger">{{message}}</div>
+    {% endif %}
+    <div class="form-group">
+        Body
+        {% if body %}
+        <textarea name='body' id="bodyy" class="form-control" rows="17">{{body}}</textarea>
+        {% else %}
+        <textarea name='body' id="bodyy" class="form-control" rows="17"></textarea>
+        {% endif %}
+      </div>
+    
+    <button id="submit" type="submit"> Save </button>
 </form>
-<script>
-    formm.addEventListener('input', () => {
-        if (title.value.length > 0 && textarea.value.length > 0){
-            submit.removeAttribute('disabled');
-        }else{
-            submit.setAttribute('disabled','disabled');
-        }
-    });
-</script>
-       
-
-
 
 {% endblock %}
